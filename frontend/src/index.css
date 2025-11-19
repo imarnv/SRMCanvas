@@ -1,0 +1,156 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === INSTANT ROOT === */
+.app-root {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: transparent !important;
+  transition: none !important;
+}
+
+/* === INSTANT SUBTLE BACKGROUND (NO FADE) === */
+.global-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #0a0e17;
+  background-image: 
+    radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.06), transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.05), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.03), transparent 70%);
+  z-index: -2;
+  pointer-events: none;
+  /* NO ANIMATION, NO TRANSITION */
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+/* === PULL TO REFRESH === */
+.pull-refresh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 999;
+  pointer-events: none;
+  transform: translateY(-60px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  user-select: none;
+}
+
+.pull-icon {
+  font-size: 1.1rem;
+  animation: bounce 1.5s infinite;
+}
+
+.pull-text {
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* === REFRESHING LOADER === */
+.refresh-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 1.5rem 0;
+  color: #06b6d4;
+  font-size: 0.9rem;
+}
+
+.refresh-loader .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(6, 182, 212, 0.3);
+  border-top-color: #06b6d4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === CONTENT === */
+.app-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 1rem 100px;
+  width: 100%;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === THEME TOGGLE === */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 116, 139, 0.4);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #06b6d4;
+  transform: translateY(-1px);
+}
+
+/* === RESET === */
+body, #root, html {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* === DARK MODE === */
+.dark .global-bg {
+  background: #05070f;
+  background-image: 
+    radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.08), transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.07), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.04), transparent 70%);
+}
