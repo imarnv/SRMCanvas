@@ -15,7 +15,9 @@ app.post("/api/scrape", (req, res) => {
   }
 
   // Run Python scraper – Render uses "python", not "python3"
-  const py = spawn("python3", ["backend/scraper/scraper.py", username, password]);
+  const py = spawn("python3", ["scraper/scraper.py", username, password], {
+    cwd: process.cwd(), // Ensure correct working directory
+  });
 
   let data = "";
   let error = "";
