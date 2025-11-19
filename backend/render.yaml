@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: srm-backend
+    env: python
+    buildCommand: |
+      apt-get update
+      apt-get install -y chromium-browser chromium-chromedriver
+      pip install -r requirements.txt
+    startCommand: python server.js
+    envVars:
+      PYTHONUNBUFFERED: true
+      CHROME_BIN: "/usr/bin/chromium-browser"
+      CHROMEDRIVER_PATH: "/usr/bin/chromedriver"

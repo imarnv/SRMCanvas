@@ -8,7 +8,9 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -73,10 +75,10 @@ def main():
 
     chrome_options = Options()
 
-    # Railway-compatible Chrome path
+# Required Chromium path for Render
     chrome_options.binary_location = "/usr/bin/chromium-browser"
 
-    # Railway mandatory flags
+    # Mandatory Render flags
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -85,19 +87,13 @@ def main():
     chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument("--window-size=1366,768")
 
-    # Performance / reliability flags
+    # Optional performance flags
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--disable-popup-blocking")
-    chrome_options.add_argument("--disable-background-timer-throttling")
-    chrome_options.add_argument("--disable-renderer-backgrounding")
-    chrome_options.add_argument("--disable-backgrounding-occluded-windows")
 
-    # Disable selenium detection
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    chrome_options.add_experimental_option("useAutomationExtension", False)
-
-
+    # Most important: DO NOT use webdriver_manager on Render
+    # Instead use system-installed Chrome + Driver
     driver = webdriver.Chrome(options=chrome_options)
 
 
