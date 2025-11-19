@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5050"; // backend port
+const API_BASE_URL = "https://srmcanvas.onrender.com"; // backend port
 
 export async function fetchAcademiaData(username, password) {
   try {
